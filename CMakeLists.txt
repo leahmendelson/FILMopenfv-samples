@@ -51,5 +51,8 @@ target_link_libraries (calibrate ${LIBS})
 add_executable (refocus ${PROJECT_SOURCE_DIR}/refocus.cpp)
 target_link_libraries (refocus ${LIBS})
 
+add_executable (benchmark ${PROJECT_SOURCE_DIR}/benchmark.cpp)
+target_link_libraries (benchmark ${LIBS})
+
 # add_executable (jobFind ${PROJECT_SOURCE_DIR}/jobFind.cpp)
 # target_link_libraries (jobFind ${LIBS})
