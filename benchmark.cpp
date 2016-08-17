@@ -5,6 +5,8 @@ using namespace std;
 
 DEFINE_bool(fhelp, false, "show config file options");
 DEFINE_bool(show_imgs, false, "show images");
+DEFINE_bool(benchmark_mode, true, "benchmark mode");
+DEFINE_bool(int_mode, false, "integer image mode");
 
 DEFINE_string(config_file, "/home/ab9/projects/hf_data/config.cfg", "config file");
 DEFINE_string(filename, "temp.jpg", "name of file to save image to");
@@ -37,6 +39,10 @@ int main(int argc, char** argv) {
         double total = 0;
         for (int i=0; i<FLAGS_iters; i++) {
             saRefocus refocus(settings);
+            if (FLAGS_benchmark_mode)
+                refocus.setBenchmarkMode(1);
+            if (FLAGS_int_mode)
+                refocus.setIntImgMode(1);
             refocus.return_stack(0, 0.9, FLAGS_dz, FLAGS_thresh, 0, stack1, t1);
             total += t1;
             if (FLAGS_show_imgs)
@@ -53,6 +59,10 @@ int main(int argc, char** argv) {
         settings.hf_method = 1;
         {
             saRefocus refocus(settings);
+            if (FLAGS_benchmark_mode)
+                refocus.setBenchmarkMode(1);
+            if (FLAGS_int_mode)
+                refocus.setIntImgMode(1);
             refocus.return_stack(0, 0.9, FLAGS_dz, FLAGS_thresh, 0, stack2, t2);
             if (FLAGS_show_imgs)
                 Movie mov(stack2);
@@ -66,7 +76,11 @@ int main(int argc, char** argv) {
         settings.use_gpu = 1;
         settings.hf_method = 0;
         {
-            saRefocus refocus(settings);    
+            saRefocus refocus(settings);
+            if (FLAGS_benchmark_mode)
+                refocus.setBenchmarkMode(1);
+            if (FLAGS_int_mode)
+                refocus.setIntImgMode(1);    
             refocus.return_stack(0, 0.9, FLAGS_dz, FLAGS_thresh, 0, stack3, t3);
             if (FLAGS_show_imgs)
                 Movie mov(stack3);
@@ -81,6 +95,10 @@ int main(int argc, char** argv) {
         settings.hf_method = 0;
         {
             saRefocus refocus(settings);
+            if (FLAGS_benchmark_mode)
+                refocus.setBenchmarkMode(1);
+            if (FLAGS_int_mode)
+                refocus.setIntImgMode(1);
             refocus.return_stack(0, 0.01, FLAGS_dz, FLAGS_thresh, 0, stack4, t4);
             if (FLAGS_show_imgs)
                 Movie mov(stack4);
