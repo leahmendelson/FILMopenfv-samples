@@ -24,12 +24,6 @@ int main(int argc, char** argv) {
     refocus_settings settings;
     parse_refocus_settings(FLAGS_config_file, settings, FLAGS_fhelp);
 
-    int i = 0;
-    for (double z=0; z<=0.01+0.05; z+=0.1) {
-        i++;
-    }
-    LOG(INFO)<<i;
-
     double t1, t2, t3, t4;
     vector<Mat> stack1, stack2, stack3, stack4;
 
@@ -61,10 +55,9 @@ int main(int argc, char** argv) {
         refocus.return_stack(0, 0.01, FLAGS_dz, FLAGS_thresh, 0, stack4, t4);
     }
 
-    LOG(INFO)<<"GPU + HF: "<<t1<<" s";
-    LOG(INFO)<<"CPU + HF: "<<t2*100<<" s";
-    LOG(INFO)<<"GPU: "<<(t3*100/60)<<" mins";
-    LOG(INFO)<<"CPU: "<<(t4*1000/60)<<" mins";
+    LOG(INFO)<<"\t\t\t"<<"Original Method"<<"\t"<<"HF Method";
+    LOG(INFO)<<"CPU only:"<<"\t\t"<<(t4*1000/60)<<" mins"<<"\t"<<t2*100<<" s";
+    LOG(INFO)<<"CPU + GPU:"<<"\t"<<(t3*100)<<" s"<<"\t"<<t1<<" s";
 
     vector<int> params;
     params.push_back(CV_IMWRITE_JPEG_QUALITY);
