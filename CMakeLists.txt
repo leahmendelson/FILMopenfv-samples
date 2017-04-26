@@ -8,11 +8,21 @@ set (PROJECT_VERSION_MINOR 0)
 find_package(OpenCV REQUIRED)
 
 set(CUDA_INC_DIR "/usr/local/cuda/include" CACHE PATH "Path to CUDA Directory")
-set(PYTHON_INC_DIR "/usr/include/python2.7" CACHE PATH "Path to Python Directory")
-set(PYTHON_LIBS "/usr/lib/libpython2.7.so" CACHE PATH "Path to Python Libraries")
 set(EIGEN_INC_DIR "/usr/include/eigen3" CACHE PATH "Path to Eigen Directory")
-set(OFV_INC_DIR "/usr/local/openfv/include" CACHE PATH "Path to OpenFV Include Directory")
-set(OFV_LIB_DIR "/usr/local/openfv/lib" CACHE PATH "Path to OpenFV Lib Directory")
+set(OFV_INC_DIR "/usr/local/include" CACHE PATH "Path to OpenFV Include Directory")
+set(OFV_LIB_DIR "/usr/local/lib" CACHE PATH "Path to OpenFV Lib Directory")
+
+# Python
+set(Python_ADDITIONAL_VERSIONS "2.7")
+find_package(PythonLibs REQUIRED)
+if (PYTHONLIBS_FOUND)
+  message("Python found!")
+  message("Python Libraries: " ${PYTHON_LIBRARIES})
+else()
+  message("Python not found! Python wrappers will not be built.")
+  set(BUILD_PYTHON OFF)
+endif()
+set(BOOST_PYTHON_VERSION "python" CACHE PATH "Boost Python Version [python or python3]")
 
 find_package(Boost)
 if(Boost_FOUND)
@@ -26,7 +36,7 @@ endif()
 
 # Include directories
 include_directories( ${OFV_INC_DIR} )
-include_directories( ${PYTHON_INC_DIR} )
+include_directories( ${PYTHON_INCLUDE_DIRS} )
 include_directories( ${CUDA_INC_DIR} )
 include_directories( ${Boost_INCLUDE_DIR} )
 include_directories( ${EIGEN_INC_DIR} )
@@ -34,10 +44,10 @@ include_directories( ${EIGEN_INC_DIR} )
 # Link directories
 link_directories( ${OFV_LIB_DIR} )
 
-set (CERES_LIBS ceres glog gflags cholmod cxsparse blas lapack) # gomp protobuf
+set (CERES_LIBS ceres glog gflags cholmod cxsparse blas lapack) # protobuf
 set (OTHER_LIBS tiff cufft cufftw ${Boost_GENERAL} ${Boost_PY})
 set (PROF_LIBS profiler)
-set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${CERES_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBS} openfv cuda_openfv)
+set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${CERES_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBRARIES} openfv cuda_openfv)
 
 # add_executable (tomo ${PROJECT_SOURCE_DIR}/tomotest.cpp)
 # target_link_libraries (tomo ${LIBS})
@@ -51,8 +61,8 @@ target_link_libraries (calibrate ${LIBS})
 add_executable (refocus ${PROJECT_SOURCE_DIR}/refocus.cpp)
 target_link_libraries (refocus ${LIBS})
 
-add_executable (benchmark ${PROJECT_SOURCE_DIR}/benchmark.cpp)
-target_link_libraries (benchmark ${LIBS})
+# add_executable (benchmark ${PROJECT_SOURCE_DIR}/benchmark.cpp)
+# target_link_libraries (benchmark ${LIBS})
 
 # add_executable (jobFind ${PROJECT_SOURCE_DIR}/jobFind.cpp)
 # target_link_libraries (jobFind ${LIBS})

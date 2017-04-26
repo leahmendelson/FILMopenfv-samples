@@ -1,10 +1,4 @@
-#include "std_include.h"
-
-#include "calibration.h"
-// #include "refocusing.h"
-// #include "pLoc.h"
-// #include "tracking.h"
-#include "tools.h"
+#include "openfv/openfv.h"
 
 using namespace cv;
 using namespace std;
@@ -25,8 +19,8 @@ int main(int argc, char** argv) {
     init_logging(argc, argv);
 
     // Uses dummy mode
-    multiCamCalibration calibration(FLAGS_path, Size(FLAGS_hgrid, FLAGS_vgrid), FLAGS_gridsize, FLAGS_ref, 1, FLAGS_mtiff, FLAGS_skip, FLAGS_show_corners);
-    calibration.run();
+    // multiCamCalibration calibration(FLAGS_path, Size(FLAGS_hgrid, FLAGS_vgrid), FLAGS_gridsize, FLAGS_ref, 1, FLAGS_mtiff, FLAGS_skip, FLAGS_show_corners);
+    // calibration.run();
 
     LOG(INFO)<<"DONE!";
     
