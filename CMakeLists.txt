@@ -44,10 +44,9 @@ include_directories( ${EIGEN_INC_DIR} )
 # Link directories
 link_directories( ${OFV_LIB_DIR} )
 
-set (CERES_LIBS ceres glog gflags cholmod cxsparse blas lapack) # protobuf
-set (OTHER_LIBS tiff ${Boost_GENERAL} ${Boost_PY}) # cufft cufftw
+set (OTHER_LIBS tiff ${Boost_GENERAL} ${Boost_PY} glog gflags)
 set (PROF_LIBS profiler)
-set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${CERES_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBRARIES} openfv cuda_openfv)
+set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBRARIES} openfv cuda_openfv)
 
 # add_executable (track ${PROJECT_SOURCE_DIR}/track.cpp)
 # target_link_libraries (track ${LIBS})
