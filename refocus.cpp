@@ -1,4 +1,5 @@
-#include "openfv/openfv.h"
+#include "openfv/refocusing.h"
+#include "openfv/parse_settings.h"
 
 using namespace cv;
 using namespace std;
@@ -6,9 +7,9 @@ using namespace std;
 DEFINE_bool(live, false, "live refocusing");
 DEFINE_bool(fhelp, false, "show config file options");
 
+DEFINE_string(config_file, "", "config file path");
 DEFINE_bool(dump_stack, false, "dump stack");
 DEFINE_string(save_path, "", "stack save path");
-DEFINE_string(config_file, "", "config file path");
 DEFINE_double(zmin, -10, "zmin");
 DEFINE_double(zmax, 10, "zmax");
 DEFINE_double(dz, 0.1, "dz");

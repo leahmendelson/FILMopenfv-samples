@@ -49,20 +49,8 @@ set (OTHER_LIBS tiff ${Boost_GENERAL} ${Boost_PY}) # cufft cufftw
 set (PROF_LIBS profiler)
 set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${CERES_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBRARIES} openfv cuda_openfv)
 
-# add_executable (tomo ${PROJECT_SOURCE_DIR}/tomotest.cpp)
-# target_link_libraries (tomo ${LIBS})
-
-add_executable (calibrate ${PROJECT_SOURCE_DIR}/calibrate.cpp)
-target_link_libraries (calibrate ${LIBS})
-
 # add_executable (track ${PROJECT_SOURCE_DIR}/track.cpp)
 # target_link_libraries (track ${LIBS})
 
 add_executable (refocus ${PROJECT_SOURCE_DIR}/refocus.cpp)
 target_link_libraries (refocus ${LIBS})
-
-# add_executable (benchmark ${PROJECT_SOURCE_DIR}/benchmark.cpp)
-# target_link_libraries (benchmark ${LIBS})
-
-# add_executable (jobFind ${PROJECT_SOURCE_DIR}/jobFind.cpp)
-# target_link_libraries (jobFind ${LIBS})
