@@ -46,7 +46,10 @@ link_directories( ${OFV_LIB_DIR} )
 
 set (OTHER_LIBS tiff ${Boost_GENERAL} ${Boost_PY} glog gflags)
 set (PROF_LIBS profiler)
-set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBRARIES} openfv cuda_openfv)
+
+# B: Commenting this out for non-cuda build
+#set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBRARIES} openfv cuda_openfv)
+set (LIBS ${CUSTOM_LIBS} ${PROF_LIBS} ${OTHER_LIBS} ${OpenCV_LIBS} ${PYTHON_LIBRARIES} openfv)
 
 # add_executable (track ${PROJECT_SOURCE_DIR}/track.cpp)
 # target_link_libraries (track ${LIBS})

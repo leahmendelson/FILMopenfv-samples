@@ -14,6 +14,7 @@ DEFINE_double(zmin, -10, "zmin");
 DEFINE_double(zmax, 10, "zmax");
 DEFINE_double(dz, 0.1, "dz");
 DEFINE_double(thresh, 0, "thresholding level");
+DEFINE_int32(v, 0, "logging level");
 
 int main(int argc, char** argv) {
 
