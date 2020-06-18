@@ -28,7 +28,8 @@ int main(int argc, char** argv) {
 
     if (FLAGS_live) {
         if (settings.use_gpu) {
-            refocus.GPUliveView();
+	    // B: commenting this out bc it messes with non-cuda build
+            //refocus.GPUliveView();
         } else {
             refocus.CPUliveView();
         }
