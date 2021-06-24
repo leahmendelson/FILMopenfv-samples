@@ -1,4 +1,5 @@
 # OpenFV Samples
+Sample Data for OpenFV Calibration, Refocusing, and PIV maintained by the Flow Imaging Lab at Mudd (FILM)
 
 Assuming you already have OpenFV installed or built on your system, in order to build samples:
 
